@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "GE Driving Tickets Manager",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "cookies",
+    "tabs",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "popup.js",
+        "store.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
