@@ -3,6 +3,13 @@
 let store;
 import('./store.js').then((v) => store = v.default);
 
+document.getElementById('train-button')
+    ?.addEventListener('click', () => {
+      chrome.runtime.sendMessage({
+        channel: 'train',
+      });
+    });
+
 document.getElementById('open-page-button')
     ?.addEventListener('click', () => {
       chrome.runtime.sendMessage({
@@ -16,17 +23,11 @@ document.getElementById('save-page-button')
       await store.setPage(url);
     });
 
-document.getElementById('save-ticket-button')
+document.getElementById('reset-tickets-button')
     ?.addEventListener('click', async () => {
-      const url = await getActiveTabUrl();
-      let params = new URL(url).searchParams;
-      let ticket = params.get('ticket');
-      if (!ticket) {
-        console.log('oh no, you are not on a ticket page')
-        return;
-      }
-      // TODO: save ticket from a single ticket page
-      // http://teoria.on.ge/tickets?ticket=51
+      const isConfirmed = confirm('Are you sure you want to delete all your saved tickets?');
+      if (!isConfirmed) return;
+      await store.resetTickets();
     });
 
 async function getActiveTabUrl() {

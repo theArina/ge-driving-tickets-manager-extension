@@ -1,9 +1,59 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>GE Driving Tickets Manager</title>
+    <style>
+        button {
+            background-color: #FFF;
+            color: #000;
+            border: 1px solid;
+            /*border-radius: 4px;*/
+            padding: 10px;
+            min-width: 120px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .green {
+            border-color: #00642b;
+            color: #00642b;
+        }
+
+        .blue {
+            border-color: #13436c;
+            color: #13436c;
+        }
+
+        .red {
+            border-color: darkred;
+            color: darkred;
+        }
+    </style>
+</head>
 <body>
-<button id="open-page-button">Open Saved Page</button>
-<button id="save-page-button">Save Page</button>
-<!--<button id="save-ticket-button">Save Ticket</button>-->
+<div class="container">
+    <button id="save-page-button" class="green">
+        <span>SAVE Page</span>
+        <!--        <span>&#128190;</span>-->
+    </button>
+    <button id="open-page-button" class="blue">
+        <span>OPEN Page</span>
+    </button>
+    <button id="train-button">
+        <span>TRAIN Tickets</span>
+    </button>
+    <button id="reset-tickets-button" class="red">
+        <span>RESET Tickets</span>
+    </button>
+</div>
 <script src="popup.js"></script>
 </body>
 </html>

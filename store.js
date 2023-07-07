@@ -14,7 +14,7 @@ const storage = {
 
 async function getState() {
   const store = await chrome.storage.local.get(storeKey);
-  return store[storeKey];
+  return store[storeKey] || {};
 }
 
 async function setState(key, value, state) {
@@ -39,7 +39,7 @@ async function addTicket(ticket) {
 
 async function getTickets() {
   const state = await getState();
-  return state.tickets;
+  return state.tickets || [];
 }
 
 async function hasTicket(ticket) {
@@ -56,10 +56,28 @@ async function setPage(value) {
   await setState('page', value);
 }
 
+async function resetTickets() {
+  await setState('tickets', []);
+}
+
+async function setNextTrainingTicketIndex(index) {
+  const nextIndex = typeof index === 'undefined' ? (await getState()).nextTrainingTicketIndex : index;
+  await setState('nextTrainingTicketIndex', nextIndex + 1);
+}
+
+async function getNextTrainingTicketUrl(givenIndex) {
+  const state = await getState();
+  const tickets = state.tickets || [];
+  const index = typeof givenIndex === 'undefined' ? state.nextTrainingTicketIndex : givenIndex;
+  return tickets[index] ? `http://teoria.on.ge/tickets?ticket=${tickets[index || 0]}` : null;
+}
+
 export default {
   hasTicket,
   addTicket,
-  getTickets,
+  resetTickets,
   getPage,
   setPage,
+  setNextTrainingTicketIndex,
+  getNextTrainingTicketUrl,
 };

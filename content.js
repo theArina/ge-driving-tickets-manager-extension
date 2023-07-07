@@ -4,6 +4,13 @@ let store;
 
 window.onload = async () => {
   store = (await import('./store.js')).default;
+  if (!location.href.includes('page')) {
+    await addNextButton();
+  }
+  await addSaveButtons();
+};
+
+async function addSaveButtons() {
   const elements = document.querySelectorAll('div.t-num');
   for (const element of elements) {
     const ticket = element.textContent.replace('#', '');
@@ -17,15 +24,20 @@ window.onload = async () => {
     const button = document.createElement('button');
     await setButton();
 
-    button.style.position = 'relative';
-    button.style.zIndex = '21';
-    button.style.fontWeight = 'bold';
-    button.style.color = '#FFF';
-    button.style.background = 'rgba(0,0,0,0.4)';
-    button.style.border = 'none';
-    button.style.fontSize = '12px';
-    button.style.margin = '10px 50px';
-    button.style.padding = '10px';
+    const elementWidth = element.getBoundingClientRect().width;
+    const buttonStyle = {
+      position: 'relative',
+      zIndex: '21',
+      fontWeight: 'bold',
+      fontSize: '12px',
+      color: '#FFF',
+      background: 'rgba(0,0,0,0.4)',
+      border: 'none',
+      margin: `10px ${10 + elementWidth || 40}px`,
+      padding: '10px',
+      cursor: 'pointer',
+    };
+    Object.assign(button.style, buttonStyle);
 
     button.addEventListener('click', async () => {
       try {
@@ -38,4 +50,28 @@ window.onload = async () => {
 
     element.insertAdjacentElement('afterend', button);
   }
-};
+}
+
+async function addNextButton() {
+  const nextUrl = await store.getNextTrainingTicketUrl();
+  const element = document.querySelector('div.item > article');
+  if (!element) {
+    return;
+  }
+  const button = document.createElement('button');
+  button.innerHTML = 'NEXT';
+  const buttonStyle = {
+    float: 'right',
+    backgroundColor: '#FFF',
+    color: '#000',
+    border: '1px solid',
+    padding: '10px',
+    cursor: 'pointer',
+  };
+  Object.assign(button.style, buttonStyle);
+  button.addEventListener('click', async () => {
+    location.href = nextUrl;
+    await store.setNextTrainingTicketIndex();
+  });
+  element.insertAdjacentElement('afterend', button);
+}
