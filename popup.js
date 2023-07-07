@@ -26,11 +26,20 @@ document.getElementById('open-page-button')
 document.getElementById('save-page-button')
     ?.addEventListener('click', async () => {
       const url = await getActiveTabUrl();
+      const domain = 'teoria.on.ge';
+      if (!url.includes(domain)) {
+        alert(`You're not on ${domain}`);
+        return;
+      }
       await store.setPage(url);
     });
 
 document.getElementById('reset-tickets-button')
     ?.addEventListener('click', async () => {
+      const tickets = await store.getTickets();
+      if (!tickets.length) {
+        return;
+      }
       const isConfirmed = confirm('Are you sure you want to delete all your saved tickets?');
       if (!isConfirmed) return;
       await store.resetTickets();

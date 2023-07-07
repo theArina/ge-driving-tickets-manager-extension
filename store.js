@@ -75,6 +75,7 @@ async function getNextTrainingTicketUrl(givenIndex) {
 export default {
   hasTicket,
   addTicket,
+  getTickets,
   resetTickets,
   getPage,
   setPage,

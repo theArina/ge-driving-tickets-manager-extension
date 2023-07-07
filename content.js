@@ -69,9 +69,14 @@ async function addNextButton() {
     cursor: 'pointer',
   };
   Object.assign(button.style, buttonStyle);
-  button.addEventListener('click', async () => {
-    location.href = nextUrl;
-    await store.setNextTrainingTicketIndex();
-  });
+  if (nextUrl) {
+    button.addEventListener('click', async () => {
+      location.href = nextUrl;
+      await store.setNextTrainingTicketIndex();
+    });
+  } else {
+    button.disabled = true;
+    button.title = 'No more tickets to train. You can click TRAIN and start again';
+  }
   element.insertAdjacentElement('afterend', button);
 }
