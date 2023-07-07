@@ -15,10 +15,10 @@ async function addSaveButtons() {
   for (const element of elements) {
     const ticket = element.textContent.replace('#', '');
 
+    let isTicketSaved;
     async function setButton(isError) {
-      const isTicketSaved = await store.hasTicket(ticket);
-      button.innerHTML = isError ? 'Error' : isTicketSaved ? 'Saved' : 'Save Ticket';
-      button.disabled = isTicketSaved;
+      isTicketSaved = await store.hasTicket(ticket);
+      button.innerHTML = isError ? 'Error' : isTicketSaved ? 'Remove Ticket' : 'Save Ticket';
     }
 
     const button = document.createElement('button');
@@ -41,7 +41,11 @@ async function addSaveButtons() {
 
     button.addEventListener('click', async () => {
       try {
-        await store.addTicket(ticket);
+        if (isTicketSaved) {
+          await store.removeTicket(ticket);
+        } else {
+          await store.addTicket(ticket);
+        }
         await setButton();
       } catch (e) {
         await setButton(true);

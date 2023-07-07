@@ -37,6 +37,15 @@ async function addTicket(ticket) {
   await setState('tickets', tickets, state);
 }
 
+async function removeTicket(ticket) {
+  const state = await getState();
+  const index = state.tickets.findIndex((curr) => curr == ticket);
+  const tickets = [
+    ...state.tickets.toSpliced(index, 1),
+  ];
+  await setState('tickets', tickets, state);
+}
+
 async function getTickets() {
   const state = await getState();
   return state.tickets || [];
@@ -75,6 +84,7 @@ async function getNextTrainingTicketUrl(givenIndex) {
 export default {
   hasTicket,
   addTicket,
+  removeTicket,
   getTickets,
   resetTickets,
   getPage,
