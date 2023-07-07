@@ -4,16 +4,22 @@ let store;
 import('./store.js').then((v) => store = v.default);
 
 document.getElementById('train-button')
-    ?.addEventListener('click', () => {
+    ?.addEventListener('click', async () => {
+      const url = await store.getNextTrainingTicketUrl(0);
+      if (!url) {
+        alert('No tickets to train');
+        return;
+      }
       chrome.runtime.sendMessage({
-        channel: 'train',
+        channel: 'train-tickets',
+        url,
       });
     });
 
 document.getElementById('open-page-button')
     ?.addEventListener('click', () => {
       chrome.runtime.sendMessage({
-        channel: 'open_page',
+        channel: 'open-page',
       });
     });
 

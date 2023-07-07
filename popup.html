@@ -3,11 +3,14 @@
 <head>
     <title>GE Driving Tickets Manager</title>
     <style>
+        body {
+            margin: 0;
+        }
+
         button {
             background-color: #FFF;
             color: #000;
-            border: 1px solid;
-            /*border-radius: 4px;*/
+            border: none;
             padding: 10px;
             min-width: 120px;
             text-align: left;
@@ -16,41 +19,30 @@
             cursor: pointer;
         }
 
+        button:hover {
+            background-color: #cbdbf6;
+            color: #1e4487;
+        }
+
         .container {
             display: flex;
             flex-direction: column;
-            gap: 5px;
-        }
-
-        .green {
-            border-color: #00642b;
-            color: #00642b;
-        }
-
-        .blue {
-            border-color: #13436c;
-            color: #13436c;
-        }
-
-        .red {
-            border-color: darkred;
-            color: darkred;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <button id="save-page-button" class="green">
+    <button id="save-page-button">
         <span>SAVE Page</span>
         <!--        <span>&#128190;</span>-->
     </button>
-    <button id="open-page-button" class="blue">
+    <button id="open-page-button">
         <span>OPEN Page</span>
     </button>
     <button id="train-button">
         <span>TRAIN Tickets</span>
     </button>
-    <button id="reset-tickets-button" class="red">
+    <button id="reset-tickets-button">
         <span>RESET Tickets</span>
     </button>
 </div>

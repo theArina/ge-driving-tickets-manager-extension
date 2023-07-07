@@ -3,12 +3,12 @@ import store from './store.js';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.channel) {
-    case 'open_page': {
+    case 'open-page': {
       handleOpenPage();
       break;
     }
-    case 'train': {
-      handleTrain();
+    case 'train-tickets': {
+      handleTrain(request.url);
       break;
     }
     default:
@@ -27,13 +27,8 @@ async function handleOpenPage() {
   });
 }
 
-async function handleTrain() {
+async function handleTrain(url) {
   await store.setNextTrainingTicketIndex(0);
-  const url = await store.getNextTrainingTicketUrl(0);
-  if (!url) {
-    alert('No tickets to train');
-    return;
-  }
   chrome.tabs.create({ url }, (tab) => {
     chrome.scripting?.executeScript({
       target: { tabId: tab.id },
