@@ -83,6 +83,8 @@ async function addNextButton() {
     });
   } else {
     button.disabled = true;
+    button.style.backgroundColor = '#e3e2e2';
+    button.style.color = '#626262';
     button.title = 'No more tickets to train. You can click TRAIN and start again';
   }
   element.insertAdjacentElement('afterend', button);
