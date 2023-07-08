@@ -4,7 +4,9 @@ let store;
 
 window.onload = async () => {
   store = (await import('./store.js')).default;
-  if (!location.href.includes('page')) {
+  const urlParams = new URL(location).searchParams;
+  const ticket = urlParams.get('ticket');
+  if (ticket) {
     await addNextButton();
   }
   await addSaveButtons();
@@ -16,6 +18,7 @@ async function addSaveButtons() {
     const ticket = element.textContent.replace('#', '');
 
     let isTicketSaved;
+
     async function setButton(isError) {
       isTicketSaved = await store.hasTicket(ticket);
       button.innerHTML = isError ? 'Error' : isTicketSaved ? 'Remove Ticket' : 'Save Ticket';
