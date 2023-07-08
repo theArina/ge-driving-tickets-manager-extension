@@ -21,7 +21,7 @@ async function addSaveButtons() {
 
     async function setButton(isError) {
       isTicketSaved = await store.hasTicket(ticket);
-      button.innerHTML = isError ? 'Error' : isTicketSaved ? 'Remove Ticket' : 'Save Ticket';
+      button.innerHTML = isError ? 'Error' : isTicketSaved ? 'REMOVE TICKET' : 'SAVE TICKET';
     }
 
     const button = document.createElement('button');
