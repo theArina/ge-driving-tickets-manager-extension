@@ -25,7 +25,7 @@ document.getElementById('open-page-button')
 
 document.getElementById('save-page-button')
     ?.addEventListener('click', async () => {
-      const url = await getActiveTabUrl();
+      const url = (await getActiveTab()).url;
       const domain = 'teoria.on.ge';
       if (!url.includes(domain)) {
         alert(`You're not on ${domain}`);
@@ -43,10 +43,11 @@ document.getElementById('reset-tickets-button')
       const isConfirmed = confirm('Are you sure you want to delete all your saved tickets?');
       if (!isConfirmed) return;
       await store.resetTickets();
+      const activeTab = await getActiveTab();
+      chrome.tabs.reload(activeTab.id);
     });
 
-async function getActiveTabUrl() {
+async function getActiveTab() {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-  const currentTab = tabs[0]; // there will be only one in this array
-  return currentTab.url;
+  return tabs[0]; // there will be only one in this array
 }
