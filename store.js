@@ -13,7 +13,7 @@ const storage = {
 */
 
 async function getState() {
-  const store = await chrome.storage.local.get(storeKey);
+  const store = await chrome.storage.sync.get(storeKey);
   return store[storeKey] || {};
 }
 
@@ -23,7 +23,7 @@ async function setState(key, value, state) {
     ...(state || {}),
     [key]: value,
   };
-  return chrome.storage.local.set({
+  return chrome.storage.sync.set({
     [storeKey]: newState,
   });
 }
