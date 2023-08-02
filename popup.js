@@ -23,6 +23,14 @@ document.getElementById('open-page-button')
       });
     });
 
+document.getElementById('help-button')
+    ?.addEventListener('click', () => {
+      chrome.runtime.sendMessage({
+        channel: 'open-page',
+        url: store.getReadmeUrl(),
+      });
+    });
+
 document.getElementById('save-page-button')
     ?.addEventListener('click', async () => {
       const url = (await getActiveTab()).url;

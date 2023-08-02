@@ -2,6 +2,7 @@
 const storeKey = 'ge_driving_theory';
 const defaultCategory = 2;
 const baseUrl = 'https://teoria.on.ge/tickets/';
+const readmeUrl = 'https://github.com/theArina/ge-driving-tickets-manager-extension/blob/main/readme.md#ge-driving-tickets-manager';
 
 /*
 const storage = {
@@ -81,6 +82,10 @@ async function getNextTrainingTicketUrl(givenIndex) {
   return tickets[index] ? `http://teoria.on.ge/tickets?ticket=${tickets[index || 0]}` : null;
 }
 
+function getReadmeUrl() {
+  return readmeUrl;
+}
+
 export default {
   hasTicket,
   addTicket,
@@ -91,4 +96,5 @@ export default {
   setPage,
   setNextTrainingTicketIndex,
   getNextTrainingTicketUrl,
+  getReadmeUrl,
 };
