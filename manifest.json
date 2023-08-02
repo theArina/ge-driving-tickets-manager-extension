@@ -2,6 +2,9 @@
   "manifest_version": 3,
   "name": "GE Driving Tickets Manager",
   "version": "1.0",
+  "icons": {
+    "128": "icon-128.png"
+  },
   "permissions": [
     "activeTab",
     "tabs",
