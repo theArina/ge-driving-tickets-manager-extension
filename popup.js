@@ -40,12 +40,14 @@ document.getElementById('save-page-button')
         return;
       }
       await store.setPage(url);
+      alert('Page is saved!');
     });
 
 document.getElementById('reset-tickets-button')
     ?.addEventListener('click', async () => {
       const tickets = await store.getTickets();
       if (!tickets.length) {
+        alert('No tickets to reset');
         return;
       }
       const isConfirmed = confirm('Are you sure you want to delete all your saved tickets?');
