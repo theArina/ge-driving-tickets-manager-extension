@@ -1,5 +1,6 @@
 /* global chrome */
-
+// TODO: add language switch
+// TODO: add zip script
 let store;
 
 window.onload = async () => {
