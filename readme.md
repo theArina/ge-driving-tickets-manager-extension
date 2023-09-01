@@ -1,5 +1,7 @@
 # GE Driving Tickets Manager
 
+[See extension in Chrome Web Store](https://chrome.google.com/webstore/detail/ge-driving-tickets-manage/ommbkmhahoekfanjcmnpkhjepocbppmg)
+#
 ### RU
 Расширение для Google Chrome - менеджер ПДД билетов для сайта **teoria.on.ge**
 
