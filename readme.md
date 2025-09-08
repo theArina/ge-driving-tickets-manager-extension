@@ -13,7 +13,7 @@
 `SAVE PAGE` - сохраняет страницу билетов, на которой вы закончили,
 чтобы в следующий раз открыть её по кнопке `OPEN PAGE`
 
-`TRAIN TICKETS` - открывает ПЕРВЫЙ сохранённый билет
+`PRACTICE` - открывает ПЕРВЫЙ сохранённый билет
 
 `RESET TICKETS` - удаляет все сохранённые билеты
 
@@ -45,7 +45,7 @@ In the popup (by clicking on the extension icon):
 
 `SAVE PAGE` - saves the ticket page you ended up on, to open it with the `OPEN PAGE` button next time
 
-`TRAIN TICKETS` - opens the FIRST saved ticket
+`PRACTICE` - opens the FIRST saved ticket
 
 `RESET TICKETS` - deletes all saved tickets
 
@@ -55,7 +55,7 @@ On the single ticket page:
 
 #### Notes:
 
-Tickets themselves are not deleted, even while training. To delete all tickets from the memory click on the `RESET TICKET` button and to delete one ticket click `REMOVE TICKET` on the page next to the ticket number.
+Tickets themselves are not deleted, even while practicing. To delete all tickets from the memory click on the `RESET TICKET` button and to delete one ticket click `REMOVE TICKET` on the page next to the ticket number.
 
 When you remove the extension, all progress is also reset.
 
