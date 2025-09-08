@@ -39,22 +39,27 @@
         width: 100%;
         margin: 0;
       }
+
+      button:disabled,
+      button:disabled:hover {
+          background-color: #eee;
+          color: #999;
+      }
     </style>
 </head>
 <body>
 <div class="container">
     <button id="save-page-button">
         <span>SAVE PAGE</span>
-        <!--        <span>&#128190;</span>-->
     </button>
     <button id="open-page-button">
         <span>OPEN PAGE</span>
     </button>
-    <button id="train-button">
+    <button id="train-button" title="">
         <span>PRACTICE</span>
         <span id="tickets-count"></span>
     </button>
-    <button id="reset-tickets-button" class="red">
+    <button id="reset-tickets-button" class="red" title="">
         <span>RESET TICKETS</span>
     </button>
     <hr>
