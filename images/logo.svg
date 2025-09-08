@@ -1,0 +1,15 @@
+<svg width="128" height="128" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+    <title id="t">Logo: minimalist steering wheel</title>
+    <desc id="d">A minimalist steering wheel icon in white on a blue background for dark mode</desc>
+
+    <!-- Blue background -->
+    <rect width="160" height="160" fill="#304489"/>
+
+    <!-- White steering wheel -->
+    <g stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <circle cx="80" cy="80" r="54"/>
+        <path d="M40 80a40 40 0 0 1 80 0"/>
+        <path d="M80 80v26"/>
+        <path d="M58 80h44"/>
+    </g>
+</svg>

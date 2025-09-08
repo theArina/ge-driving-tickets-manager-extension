@@ -1,0 +1,12 @@
+<svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+    <title id="t">Logo: minimalist steering wheel</title>
+    <desc id="d">A simple monochrome steering wheel icon representing driving test preparation</desc>
+
+    <!-- Steering wheel -->
+    <g stroke="#FFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <circle cx="80" cy="80" r="54"/>
+        <path d="M40 80a40 40 0 0 1 80 0"/>
+        <path d="M80 80v26"/>
+        <path d="M58 80h44"/>
+    </g>
+</svg>
