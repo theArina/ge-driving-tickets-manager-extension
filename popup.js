@@ -1,9 +1,11 @@
 /* global chrome */
 
+const DOMAIN = 'teoria.on.ge';
+
 let store;
 import('./store.js').then((v) => {
   store = v.default;
-  updateTicketsCount();
+  updateButtonsState();
 });
 
 document.getElementById('train-button')
@@ -36,13 +38,12 @@ document.getElementById('help-button')
 document.getElementById('save-page-button')
     ?.addEventListener('click', async () => {
       const url = (await getActiveTab()).url;
-      const domain = 'teoria.on.ge';
-      if (!url.includes(domain)) {
-        alert(`You're not at ${domain}`);
+      if (!url.includes(DOMAIN)) {
         return;
       }
       await store.setPage(url);
       alert('Page is saved!');
+      window.close();
     });
 
 document.getElementById('reset-tickets-button')
@@ -56,6 +57,7 @@ document.getElementById('reset-tickets-button')
       await store.resetTickets();
       const activeTab = await getActiveTab();
       chrome.tabs.reload(activeTab.id);
+      window.close();
     });
 
 async function getActiveTab() {
@@ -63,7 +65,7 @@ async function getActiveTab() {
   return tabs[0]; // there will be only one in this array
 }
 
-async function updateTicketsCount() {
+async function updateButtonsState() {
   if (!store) return;
   const tickets = await store.getTickets();
   const count = tickets.length ?? 0;
@@ -86,5 +88,22 @@ async function updateTicketsCount() {
 
     resetBtn.disabled = true;
     resetBtn.title = noTicketsText;
+  }
+
+  const saveBtn = document.getElementById('save-page-button');
+  const openBtn = document.getElementById('open-page-button');
+
+  const activeTab = await getActiveTab();
+  if (activeTab.url.includes(DOMAIN)) {
+    saveBtn.disabled = false;
+    saveBtn.title = 'Save current page';
+  } else {
+    saveBtn.disabled = true;
+    saveBtn.title = `You can only save pages from ${DOMAIN}`;
+  }
+
+  const savedPage = await store.getPage?.();
+  if (savedPage) {
+    openBtn.title = `Open saved page: ${savedPage}`;
   }
 }
