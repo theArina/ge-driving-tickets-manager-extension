@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "name": "GE Driving Tickets Manager",
   "version": "1.4.0",
+  "homepage_url": "https://github.com/theArina/ge-driving-tickets-manager-extension",
   "icons": {
     "128": "images/logo.png"
   },
